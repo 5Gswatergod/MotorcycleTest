@@ -59,6 +59,9 @@ const kindLabels: Record<QuestionKind, string> = {
   video: "危險感知影片",
 };
 
+const publicUrl = (path: string) =>
+  `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
+
 function makeHistoryId() {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 }
@@ -83,7 +86,7 @@ export function App() {
 
   useEffect(() => {
     let active = true;
-    fetch("/data/question-bank.json")
+    fetch(publicUrl("data/question-bank.json"))
       .then((response) => {
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         return response.json() as Promise<QuestionBank>;
@@ -445,7 +448,14 @@ function HomeScreen({
 
   return (
     <main className="home-shell">
-      <section className="hero">
+      <section
+        className="hero"
+        style={
+          {
+            "--hero-image": `url(${publicUrl("assets/hero/night-road-helmet.png")})`,
+          } as React.CSSProperties
+        }
+      >
         <div className="hero-shade" />
         <header className="home-header">
           <Brand />
@@ -929,8 +939,8 @@ function QuestionContent({
       {question.promptImages.length > 0 && (
         <div className={`prompt-images ${question.promptImages.length > 1 ? "is-grid" : ""}`}>
           {question.promptImages.map((image, index) => (
-            <a key={image} href={image} target="_blank" rel="noreferrer" aria-label="開啟原尺寸題目圖片">
-              <img src={image} alt={`題目插圖 ${index + 1}`} />
+            <a key={image} href={publicUrl(image)} target="_blank" rel="noreferrer" aria-label="開啟原尺寸題目圖片">
+              <img src={publicUrl(image)} alt={`題目插圖 ${index + 1}`} />
             </a>
           ))}
         </div>
@@ -957,7 +967,7 @@ function QuestionContent({
             >
               <span className="option-letter">{String.fromCharCode(65 + answerIndex)}</span>
               {question.optionImages[answerIndex] ? (
-                <img src={question.optionImages[answerIndex]} alt={`選項 ${answerIndex + 1}`} />
+                <img src={publicUrl(question.optionImages[answerIndex])} alt={`選項 ${answerIndex + 1}`} />
               ) : null}
               <span>{option}</span>
               {isCorrect && <CheckCircle className="option-status" size={24} weight="fill" />}

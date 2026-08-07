@@ -34,3 +34,7 @@ npm run build
 ```
 
 學習紀錄以 `motorcycle-test:` 命名空間保存在瀏覽器 localStorage，沒有帳號、伺服器資料庫或外部同步。可在首頁匯出／匯入 JSON 備份。
+
+## GitHub Pages
+
+Repository 內含 `.github/workflows/deploy-pages.yml`。推送至 `main` 後會自動執行型別檢查、測試、正式建置並部署 `dist/client`。第一次使用時，請至 GitHub 的 **Settings → Pages → Build and deployment**，確認 Source 為 **GitHub Actions**。
