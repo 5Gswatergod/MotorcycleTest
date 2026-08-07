@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+
+# Build and test output
+dist/
+coverage/
+.vite/
+*.tsbuildinfo
+
+# Local environment files
+.env
+.env.*
+!.env.example
+*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Python caches and virtual environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Local design QA captures (keep design-qa.md)
+design-qa/*.png
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Codex local workspace metadata
+.codex/
+.agents/
+.openai/
+design-qa/
