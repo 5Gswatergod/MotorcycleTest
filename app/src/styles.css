@@ -190,7 +190,7 @@ a {
   min-height: 100vh;
   overflow: hidden;
   background-color: #070b0c;
-  background-image: url("/assets/hero/night-road-helmet.png");
+  background-image: var(--hero-image);
   background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;
